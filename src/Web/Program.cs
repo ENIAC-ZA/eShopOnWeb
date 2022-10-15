@@ -75,12 +75,14 @@ builder.Services.Configure<ServiceConfig>(config =>
 });
 
 // blazor configuration
-
+var configSection = builder.Configuration.GetRequiredSection(BaseUrlConfiguration.CONFIG_NAME);
+builder.Services.Configure<BaseUrlConfiguration>(configSection);
+var baseUrlConfig = configSection.Get<BaseUrlConfiguration>();
 
 // Blazor Admin Required Services for Prerendering
 builder.Services.AddScoped<HttpClient>(s => new HttpClient
 {
-    BaseAddress = "https://127.0.0.1:44315/";
+    BaseAddress = new Uri(baseUrlConfig.WebBase)
 });
 
 // add blazor services
