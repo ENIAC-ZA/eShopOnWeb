@@ -75,9 +75,7 @@ builder.Services.Configure<ServiceConfig>(config =>
 });
 
 // blazor configuration
-var configSection = builder.Configuration.GetRequiredSection(BaseUrlConfiguration.CONFIG_NAME);
-builder.Services.Configure<BaseUrlConfiguration>(configSection);
-var baseUrlConfig = configSection.Get<BaseUrlConfiguration>();
+var baseUrlConfig = "https://127.0.0.1:44315/";
 
 // Blazor Admin Required Services for Prerendering
 builder.Services.AddScoped<HttpClient>(s => new HttpClient
