@@ -1,5 +1,5 @@
 {
-  "runtimeOptions":{
+  "configProperties":{
   "baseUrls": {
     "apiBase": "https://127.0.0.1:5099/api/",
     "webBase": "https://127.0.0.1:44315/"
