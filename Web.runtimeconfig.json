@@ -1,9 +1,9 @@
 {
   "runtimeOptions": {
-    "tfm": "netcoreapp6.0.10",
+    "tfm": "netcoreapp6.0",
     "framework": {
       "name": "Microsoft.NETCore.App",
-      "version": "6.0.10"
+      "version": "6.0"
     }
   },
   "configProperties":{
