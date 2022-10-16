@@ -1,11 +1,4 @@
 {
-  "runtimeOptions": {
-    "tfm": "netcoreapp6.0",
-    "framework": {
-      "name": "Microsoft.NETCore.App",
-      "version": "6.0"
-    }
-  },
   "configProperties":{
   "baseUrls": {
     "apiBase": "https://127.0.0.1:5099/api/",
