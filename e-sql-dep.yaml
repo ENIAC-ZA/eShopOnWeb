@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eshopsql
+  namespace: jenkins
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: eshopsql
+  template:
+    metadata:
+      labels:
+        app: eshopsql
+    spec:
+      containers:
+      - name: eshopsql
+        image: eniacza/eshopsql:latest
+        ports:
+          - name: http-port
+            containerPort: 1433
+        volumeMounts:
+          - name: eweb-vol
+            mountPath: /var/eshop
+      volumes:
+        - name: eweb-vol
+          emptyDir: {}
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: eshopsql-service
+  namespace: jenkins
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 1433
+      targetPort: 1433
+  selector:
+    app: eshopsql
+

@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eshopapi
+  namespace: jenkins
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: eshopapi
+  template:
+    metadata:
+      labels:
+        app: eshopapi
+    spec:
+      containers:
+      - name: eshopapi
+        image: jenkins/jenkins:lts
+        ports:
+          - name: http-port
+            containerPort: 80
+        volumeMounts:
+          - name: eweb-vol
+            mountPath: /var/eshop
+      volumes:
+        - name: eweb-vol
+          emptyDir: {}
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: eshopapi-service
+  namespace: jenkins
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 5200
+      targetPort: 80
+  selector:
+    app: eshopapi
+
